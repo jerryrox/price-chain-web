@@ -47,7 +47,7 @@ export default function AppDrawer() {
         <Drawer open={isOpen} anchor="left" onClose={onDrawerClose}>
             <List style={{
                 width: 320,
-                height: "100vh",
+                height: "100%",
             }}>
                 {drawListItem(Icons.home, "Home", onHomeButton)}
                 {
