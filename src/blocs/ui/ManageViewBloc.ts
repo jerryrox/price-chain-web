@@ -4,12 +4,14 @@ import IItemPriceModel from "../../models/IItemPriceModel";
 import NotificationBloc from "../NotificationBloc";
 import LoginState from "../states/LoginState";
 import ManageViewState from "../states/ManageViewState";
+import ItemOverlayBloc from "./ItemOverlayBloc";
 
 interface IManageViewDependency {
     manageViewState: ManageViewState;
 
     loginState: LoginState;
 
+    itemOverlayBloc: ItemOverlayBloc;
     notificationBloc: NotificationBloc;
 }
 
@@ -34,7 +36,7 @@ export default class ManageViewBloc extends BaseBloc {
     };
 
     createNewItem = () => {
-        // TODO:
+        this.deps.itemOverlayBloc.show();
     };
 
     loadItems = async () => {
@@ -50,6 +52,6 @@ export default class ManageViewBloc extends BaseBloc {
     };
 
     editItem = (item: IItemPriceModel) => {
-        // TODO:
+        this.deps.itemOverlayBloc.showEdit(item);
     };
 }

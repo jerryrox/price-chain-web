@@ -7,6 +7,7 @@ import BaseOverlayBloc from "../blocs/ui/BaseOverlayBloc";
 interface IBaseOverlayParam {
     bloc: BaseOverlayBloc<BaseOverlayState>;
     fullWidth?: boolean;
+    disableBackdropClick?: boolean;
     onCloseOverride?: () => void;
     children?: any;
 }
@@ -14,6 +15,7 @@ interface IBaseOverlayParam {
 export default function BaseOverlay({
     bloc,
     fullWidth,
+    disableBackdropClick,
     onCloseOverride,
     children
 }: IBaseOverlayParam) {
@@ -30,7 +32,12 @@ export default function BaseOverlay({
     };
 
     return (
-        <Dialog fullWidth={fullWidth} open={isShowing} onClose={onDialogClose}>
+        <Dialog
+            fullWidth={fullWidth}
+            open={isShowing}
+            onClose={onDialogClose}
+            disableBackdropClick={disableBackdropClick}
+        >
             {children}
         </Dialog>
     );

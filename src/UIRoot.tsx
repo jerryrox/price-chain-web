@@ -10,6 +10,7 @@ import NotificationServicer from "./servicers/NotificationServicer";
 import BlockchainOverlay from "./overlays/BlockchainOverlay";
 import BlockOverlay from "./overlays/BlockOverlay";
 import ManageView from "./views/ManageView";
+import ItemOverlay from "./overlays/ItemOverlay";
 
 export default function UIRoot() {
     
@@ -34,7 +35,8 @@ export default function UIRoot() {
                 </Switch>
 
                 <BlockchainOverlay />
-                <BlockOverlay/>
+                <BlockOverlay />
+                <ItemOverlay/>
 
                 <AppDrawer/>
             </BrowserRouter>
