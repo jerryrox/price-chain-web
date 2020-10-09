@@ -1,4 +1,4 @@
-import { Box, Button, Container, Divider, List, ListItem, TextField, Typography } from "@material-ui/core";
+import { Box, Button, Container, List, ListItem, MenuItem, Select, TextField, Typography } from "@material-ui/core";
 import { useBindable } from "bindable-bloc";
 import React, { useEffect } from "react";
 import SearchViewState from "../blocs/states/SearchViewState";
@@ -7,6 +7,8 @@ import FlexBox from "../components/FlexBox";
 import TitleHeader from "../components/TitleHeader";
 import useBloc from "../libs/useBloc";
 import Utils from "../libs/Utils";
+import ItemSortType from "../models/ItemSortType";
+import SortDirection from "../models/SortDirection";
 
 export default function SearchView() {
 
@@ -15,12 +17,18 @@ export default function SearchView() {
 
     const searchValue = useBindable(state.searchValue);
     const results = useBindable(state.results);
+    const itemSortType = useBindable(state.itemSortType);
+    const sortDirection = useBindable(state.sortDirection);
 
     useEffect(() => {
         bloc.initState();
     }, []); // eslint-disable-line
 
     const onSearchValueChange = (e: any) => bloc.setSearchValue(e.target.value);
+
+    const onItemSortTypeChange = (e: any) => bloc.setItemSort(e.target.value);
+
+    const onSortDirectionChange = (e: any) => bloc.setSortDirection(e.target.value);
 
     const onSearchButton = () => bloc.search();
     
@@ -42,7 +50,29 @@ export default function SearchView() {
                         Search
                     </Button>
                 </FlexBox>
+
+                <Box height={10} />
+
+                <FlexBox flexDirection="row" alignItems="center">
+                    <Typography>Sort by:</Typography>
+                    <Box width={10}/>
+                    <Select value={itemSortType} onChange={onItemSortTypeChange}>
+                        <MenuItem value={ItemSortType.Price}>Price</MenuItem>
+                        <MenuItem value={ItemSortType.Date}>Date</MenuItem>
+                    </Select>
+
+                    <Box width={30} />
+
+                    <Typography>Direction:</Typography>
+                    <Box width={10}/>
+                    <Select value={sortDirection} onChange={onSortDirectionChange}>
+                        <MenuItem value={SortDirection.Ascending}>Ascending</MenuItem>
+                        <MenuItem value={SortDirection.Descending}>Descending</MenuItem>
+                    </Select>
+                </FlexBox>
+                
                 <Box height={20} />
+
                 <List>
                     {
                         results.map((r) => {
