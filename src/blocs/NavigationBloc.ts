@@ -11,4 +11,10 @@ export default class NavigationBloc extends BaseBloc {
     };
 
     toHome = () => this.history?.push("/home");
+
+    toSearch = () => this.history?.push("/search");
+
+    toDashboard = () => this.history?.push("/dashboard");
+
+    toWallet = () => this.history?.push("/wallet");
 }

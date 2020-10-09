@@ -3,6 +3,7 @@ import { createContext } from "react";
 import NavigationBloc from "./NavigationBloc";
 import AppDrawerState from "./states/AppDrawerState";
 import BalanceState from "./states/BalanceState";
+import HomeViewState from "./states/HomeViewState";
 import LoginState from "./states/LoginState";
 import UserState from "./states/UserState";
 import WalletViewState from "./states/WalletViewState";
@@ -28,7 +29,10 @@ export function initContextValue(): BlocContextValue {
         appDrawerBloc
     });
 
+    const homeViewState = new HomeViewState();
     const homeViewBloc = new HomeViewBloc({
+        homeViewState, loginState, userState,
+        navigationBloc,
     });
 
     const walletViewState = new WalletViewState();
@@ -48,6 +52,7 @@ export function initContextValue(): BlocContextValue {
 
         navBarBloc,
 
+        homeViewState,
         homeViewBloc,
 
         walletViewState,
