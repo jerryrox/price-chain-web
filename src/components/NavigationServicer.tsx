@@ -8,7 +8,7 @@ export default function NavigationServicer() {
     const bloc = useBloc(NavigationBloc);
     const history = useHistory();
 
-    useEffect(() => bloc.setHistory(history), []); // eslint-disable-line
+    useEffect(() => bloc.setHistory(history), [history]); // eslint-disable-line
 
     return null;
 }

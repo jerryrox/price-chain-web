@@ -11,11 +11,11 @@ export default function UIRoot() {
     
     return (
         <Box>
-            <NavigationServicer />
-            
-            <NavBar />
-            
             <BrowserRouter>
+                <NavigationServicer />
+
+                <NavBar />
+
                 <Switch>
                     <Route exact path="/">
                         <HomeView/>
@@ -27,9 +27,9 @@ export default function UIRoot() {
                         <WalletView/>
                     </Route>
                 </Switch>
-            </BrowserRouter>
 
-            <AppDrawer/>
+                <AppDrawer/>
+            </BrowserRouter>
         </Box>
     );
 }
