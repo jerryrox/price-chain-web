@@ -4,6 +4,7 @@ import NavigationBloc from "../NavigationBloc";
 import AppDrawerState from "../states/AppDrawerState";
 import LoginState from "../states/LoginState";
 import UserState from "../states/UserState";
+import BlockchainOverlayBloc from "./BlockchainOverlayBloc";
 
 interface IAppDrawerDependency {
     appDrawerState: AppDrawerState;
@@ -12,6 +13,7 @@ interface IAppDrawerDependency {
     userState: UserState;
 
     navigationBloc: NavigationBloc;
+    blockchainOverlayBloc: BlockchainOverlayBloc;
 }
 
 export default class AppDrawerBloc extends BaseBloc {
@@ -47,7 +49,7 @@ export default class AppDrawerBloc extends BaseBloc {
     };
 
     debugChain = () => {
-        // TODO:
+        this.deps.blockchainOverlayBloc.show();
     };
 
     debugBlock = () => {

@@ -13,6 +13,8 @@ export default class ApiRequest {
         try {
             const queryParam = data === undefined ? "" : Utils.recordToQueryParam(data);
             const response = await axios.get(url + queryParam);
+
+            console.log(response.data);
             return ApiRequest.parseResponse(response);
         }
         catch (e) {
