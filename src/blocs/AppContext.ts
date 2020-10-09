@@ -1,5 +1,6 @@
 import { BlocContextValue } from "bindable-bloc";
 import { createContext } from "react";
+import NavigationBloc from "./NavigationBloc";
 import AppDrawerState from "./states/AppDrawerState";
 import LoginState from "./states/LoginState";
 import UserState from "./states/UserState";
@@ -11,6 +12,8 @@ export function initContextValue(): BlocContextValue {
 
     const userState = new UserState();
     const loginState = new LoginState();
+
+    const navigationBloc = new NavigationBloc();
 
     const appDrawerState = new AppDrawerState();
     const appDrawerBloc = new AppDrawerBloc({
@@ -27,6 +30,8 @@ export function initContextValue(): BlocContextValue {
     return new BlocContextValue({
         userState,
         loginState,
+
+        navigationBloc,
 
         appDrawerState,
         appDrawerBloc,
