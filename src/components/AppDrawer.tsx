@@ -6,13 +6,17 @@ import AppDrawerState from "../blocs/states/AppDrawerState";
 import useBloc from "../libs/useBloc";
 import Icons from "../libs/Icons";
 import useAuth from "../libs/useAuth";
+import UserState from "../blocs/states/UserState";
+import UserType from "../models/UserType";
 
 export default function AppDrawer() {
 
     const bloc = useBloc(AppDrawerBloc);
     const state = useBloc(AppDrawerState);
+    const userState = useBloc(UserState);
 
     const isOpen = useBindable(state.isOpen);
+    const userType = useBindable(userState.userType);
 
     const isLoggedIn = useAuth();
 
@@ -27,6 +31,8 @@ export default function AppDrawer() {
     const onSearchButton = () => bloc.toSearch();
 
     const onWalletButton = () => bloc.toWallet();
+
+    const onManageButton = () => bloc.toManage();
 
     const onDebugChainButton = () => bloc.debugChain();
 
@@ -54,6 +60,10 @@ export default function AppDrawer() {
                 {
                     isLoggedIn &&
                     drawListItem(Icons.wallet, "Wallet", onWalletButton)
+                }
+                {
+                    userType === UserType.shopOwner &&
+                    drawListItem(Icons.manage, "Manage items", onManageButton)
                 }
                 {drawListItem(Icons.blockChain, "Log Blockchain Data", onDebugChainButton)}
                 {drawListItem(Icons.block, "Log Block Data", onDebugBlockButton)}

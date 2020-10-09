@@ -50,6 +50,11 @@ export default class AppDrawerBloc extends BaseBloc {
         this.closeDrawer();
     };
 
+    toManage = () => {
+        this.deps.navigationBloc.toManage();
+        this.closeDrawer();
+    };
+
     debugChain = () => {
         this.deps.blockchainOverlayBloc.show();
     };

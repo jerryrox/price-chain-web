@@ -6,6 +6,7 @@ import ViewAgenda from "@material-ui/icons/ViewAgenda";
 import Search from "@material-ui/icons/Search";
 import AccountBalanceWallet from "@material-ui/icons/AccountBalanceWallet";
 import Edit from "@material-ui/icons/Edit";
+import Storefront from "@material-ui/icons/Storefront";
 
 class Icons {
 
@@ -39,6 +40,10 @@ class Icons {
 
     get edit(): any {
         return Edit;
+    }
+
+    get manage(): any {
+        return Storefront;
     }
 }
 export default new Icons();

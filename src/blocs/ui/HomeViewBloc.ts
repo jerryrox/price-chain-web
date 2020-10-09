@@ -52,6 +52,10 @@ export default class HomeViewBloc extends BaseBloc {
         this.deps.navigationBloc.toWallet();
     };
 
+    toManage = () => {
+        this.deps.navigationBloc.toManage();
+    };
+
     logout = () => {
         this.deps.loginState.credential.value = null;
         this.deps.userState.userType.value = UserType.anonymous;

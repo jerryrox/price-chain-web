@@ -8,7 +8,7 @@ import HomeViewBloc from "../blocs/ui/HomeViewBloc";
 import FlexBox from "../components/FlexBox";
 import useAuth from "../libs/useAuth";
 import useBloc from "../libs/useBloc";
-import { UserTypeUtils } from "../models/UserType";
+import UserType, { UserTypeUtils } from "../models/UserType";
 
 export default function HomeView() {
 
@@ -37,6 +37,8 @@ export default function HomeView() {
     const onShopOwnerButton = () => bloc.continueAsShopOwner();
 
     const onWalletButton = () => bloc.toWallet();
+
+    const onManageButton = () => bloc.toManage();
 
     const onLogoutButton = () => bloc.logout();
 
@@ -92,6 +94,16 @@ export default function HomeView() {
                 }}>
                     My wallet
                 </Button>
+                <Box height={10} />
+                {
+                    userType === UserType.shopOwner &&
+                    <Button variant="contained" color="primary" onClick={onManageButton} style={{
+                        maxWidth: "90%",
+                        width: 400,
+                    }}>
+                        Manage items
+                    </Button>
+                }
                 <Box height={10}/>
                 <Button variant="contained" color="secondary" onClick={onLogoutButton} style={{
                     maxWidth: "90%",
