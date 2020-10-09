@@ -2,6 +2,7 @@ import { BlocContextValue } from "bindable-bloc";
 import { createContext } from "react";
 import NavigationBloc from "./NavigationBloc";
 import AppDrawerState from "./states/AppDrawerState";
+import BalanceState from "./states/BalanceState";
 import LoginState from "./states/LoginState";
 import UserState from "./states/UserState";
 import WalletViewState from "./states/WalletViewState";
@@ -14,6 +15,7 @@ export function initContextValue(): BlocContextValue {
 
     const userState = new UserState();
     const loginState = new LoginState();
+    const balanceState = new BalanceState();
 
     const navigationBloc = new NavigationBloc();
 
@@ -31,12 +33,13 @@ export function initContextValue(): BlocContextValue {
 
     const walletViewState = new WalletViewState();
     const walletViewBloc = new WalletViewBloc({
-        walletViewState,
+        walletViewState, balanceState, loginState,
     });
 
     return new BlocContextValue({
         userState,
         loginState,
+        balanceState,
 
         navigationBloc,
 
