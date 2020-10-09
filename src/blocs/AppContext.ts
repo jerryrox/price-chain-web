@@ -4,6 +4,7 @@ import AppDrawerState from "./states/AppDrawerState";
 import LoginState from "./states/LoginState";
 import UserState from "./states/UserState";
 import AppDrawerBloc from "./ui/AppDrawerBloc";
+import HomeViewBloc from "./ui/HomeViewBloc";
 import NavBarBloc from "./ui/NavBarBloc";
 
 export function initContextValue(): BlocContextValue {
@@ -20,6 +21,9 @@ export function initContextValue(): BlocContextValue {
         appDrawerBloc
     });
 
+    const homeViewBloc = new HomeViewBloc({
+    });
+
     return new BlocContextValue({
         userState,
         loginState,
@@ -28,6 +32,8 @@ export function initContextValue(): BlocContextValue {
         appDrawerBloc,
 
         navBarBloc,
+
+        homeViewBloc,
     });
 }
 

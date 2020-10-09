@@ -1,4 +1,4 @@
-import { Box, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Typography } from "@material-ui/core";
+import { Box, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { useBindable } from "bindable-bloc";
 import React, { useEffect } from "react";
 import AppDrawerBloc from "../blocs/ui/AppDrawerBloc";
