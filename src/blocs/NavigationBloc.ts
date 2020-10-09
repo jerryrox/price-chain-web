@@ -17,4 +17,6 @@ export default class NavigationBloc extends BaseBloc {
     toDashboard = () => this.history?.push("/dashboard");
 
     toWallet = () => this.history?.push("/wallet");
+
+    toManage = () => this.history?.push("/manage");
 }

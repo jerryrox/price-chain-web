@@ -5,6 +5,7 @@ import Link from "@material-ui/icons/Link";
 import ViewAgenda from "@material-ui/icons/ViewAgenda";
 import Search from "@material-ui/icons/Search";
 import AccountBalanceWallet from "@material-ui/icons/AccountBalanceWallet";
+import Edit from "@material-ui/icons/Edit";
 
 class Icons {
 
@@ -34,6 +35,10 @@ class Icons {
     
     get wallet(): any {
         return AccountBalanceWallet;
+    }
+
+    get edit(): any {
+        return Edit;
     }
 }
 export default new Icons();

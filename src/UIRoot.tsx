@@ -9,6 +9,7 @@ import WalletView from "./views/WalletView";
 import NotificationServicer from "./servicers/NotificationServicer";
 import BlockchainOverlay from "./overlays/BlockchainOverlay";
 import BlockOverlay from "./overlays/BlockOverlay";
+import ManageView from "./views/ManageView";
 
 export default function UIRoot() {
     
@@ -24,11 +25,11 @@ export default function UIRoot() {
                     <Route exact path="/">
                         <HomeView/>
                     </Route>
-                    <Route path="/login">
-
-                    </Route>
                     <Route path="/wallet">
                         <WalletView/>
+                    </Route>
+                    <Route path="/manage">
+                        <ManageView/>
                     </Route>
                 </Switch>
 

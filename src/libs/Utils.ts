@@ -7,5 +7,9 @@ class Utils {
         }
         return query;
     };
+
+    getPercent = (value: number) => {
+        return `${Math.floor(value * 100)}%`;
+    };
 }
 export default new Utils();
