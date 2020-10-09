@@ -42,7 +42,8 @@ export function initContextValue(): BlocContextValue {
 
     const itemOverlayState = new ItemOverlayState();
     const itemOverlayBloc = new ItemOverlayBloc({
-        itemOverlayState,
+        itemOverlayState, loginState, notificationBloc,
+        
     });
 
     const appDrawerState = new AppDrawerState();

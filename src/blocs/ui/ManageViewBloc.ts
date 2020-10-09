@@ -41,7 +41,7 @@ export default class ManageViewBloc extends BaseBloc {
 
     loadItems = async () => {
         try {
-            const myAddress = "02ec78b6f513f5a9eb3bc308ae670e1bbe35485fec151b32b602073fa0db31ef8c";//this.myAddress;
+            const myAddress = this.myAddress;
             const items = await Api.getItems(myAddress);
     
             this.deps.manageViewState.items.value = items;

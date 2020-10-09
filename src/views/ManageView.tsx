@@ -1,11 +1,13 @@
 import { Box, Button, IconButton, List, ListItem, Typography } from "@material-ui/core";
 import { useBindable } from "bindable-bloc";
 import React, { useEffect } from "react";
+import NavigationBloc from "../blocs/NavigationBloc";
 import ManageViewState from "../blocs/states/ManageViewState";
 import ManageViewBloc from "../blocs/ui/ManageViewBloc";
 import FlexBox from "../components/FlexBox";
 import TitleHeader from "../components/TitleHeader";
 import Icons from "../libs/Icons";
+import useAuth from "../libs/useAuth";
 import useBloc from "../libs/useBloc";
 import Utils from "../libs/Utils";
 
@@ -13,6 +15,7 @@ export default function ManageView() {
 
     const bloc = useBloc(ManageViewBloc);
     const state = useBloc(ManageViewState);
+    const navigationBloc = useBloc(NavigationBloc);
 
     const items = useBindable(state.items);
 
@@ -23,6 +26,10 @@ export default function ManageView() {
     useEffect(() => {
         bloc.initState();
     }, []); // eslint-disable-line
+
+    useAuth({
+        whenUnauth: navigationBloc.toHome,
+    });
     
     return (
         <Box>

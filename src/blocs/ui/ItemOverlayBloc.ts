@@ -1,14 +1,25 @@
+import Api from "../../api/Api";
 import IItemPriceModel from "../../models/IItemPriceModel";
+import NotificationBloc from "../NotificationBloc";
 import ItemOverlayState from "../states/ItemOverlayState";
+import LoginState from "../states/LoginState";
 import BaseOverlayBloc from "./BaseOverlayBloc";
 
 interface IItemOverlayDependency {
     itemOverlayState: ItemOverlayState;
+
+    loginState: LoginState;
+
+    notificationBloc: NotificationBloc;
 }
 
 export default class ItemOverlayBloc extends BaseOverlayBloc<ItemOverlayState> {
     
     readonly deps: IItemOverlayDependency;
+
+    get myAddress(): string {
+        return this.deps.loginState.credential.value?.publicAddress as string;
+    }
     
     constructor(deps: IItemOverlayDependency) {
         super(deps.itemOverlayState);
@@ -44,7 +55,24 @@ export default class ItemOverlayBloc extends BaseOverlayBloc<ItemOverlayState> {
 
     setDiscountRate = (value: string) => this.deps.itemOverlayState.discountRateStr.value = value;
 
-    save = () => {
-        // TODO:
+    save = async () => {
+        try {
+            const myAddress = this.myAddress;
+            const state = this.deps.itemOverlayState;
+            await Api.addPrices(myAddress, [{
+                basePrice: state.basePrice,
+                discountRate: state.discountRate,
+                sku: state.sku.value
+            }]);
+
+            this.deps.notificationBloc.add({
+                message: `Successfully ${state.isEditing ? "edited" : "created"} item.`,
+                variant: "success"
+            });
+            this.hide();
+        }
+        catch (e) {
+            this.deps.notificationBloc.addError(e.message);
+        }
     };
 }
