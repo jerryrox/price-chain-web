@@ -1,4 +1,5 @@
 import { BaseBloc } from "bindable-bloc";
+import Api from "../../api/Api";
 import NotificationBloc from "../NotificationBloc";
 import BalanceState from "../states/BalanceState";
 import LoginState from "../states/LoginState";
@@ -16,22 +17,39 @@ interface IWalletViewDependency {
 export default class WalletViewBloc extends BaseBloc {
     
     readonly deps: IWalletViewDependency;
+
+    get myAddress(): string {
+        return this.deps.loginState.credential.value?.publicAddress as string;
+    }
     
     constructor(deps: IWalletViewDependency) {
         super();
         this.deps = deps;
     }
     
-    initState = () => {
-        this.deps.walletViewState.amount.value = "0";
-        this.deps.walletViewState.address.value = "";
+    initState = async () => {
+        this.resetFields();
+
+        await this.loadBalance();
+    };
+
+    loadBalance = async () => {
+        try {
+            const address = this.myAddress;
+            const balance = await Api.getBalance(address);
+
+            this.deps.balanceState.balance.value = balance;
+        }
+        catch (e) {
+            this.deps.notificationBloc.addError(e.message);
+        }
     };
 
     setAmount = (amount: string) => this.deps.walletViewState.amount.value = amount.trim();
 
     setAddress = (address: string) => this.deps.walletViewState.address.value = address.trim();
 
-    sendTokens = () => {
+    sendTokens = async () => {
         const balance = this.deps.balanceState.balance.value;
         const amount = this.deps.walletViewState.amountNumber;
         const address = this.deps.walletViewState.address.value;
@@ -39,7 +57,25 @@ export default class WalletViewBloc extends BaseBloc {
             return;
         }
 
-        // TODO:
+        const myAddress = this.myAddress;
+        try {
+            await Api.sendToken(myAddress, address, amount);
+        }
+        catch (e) {
+            this.deps.notificationBloc.addError(e.message);
+            return;
+        }
+
+        this.deps.notificationBloc.add({
+            message: "Request sent. Please wait for a moment to finalize the transaction.",
+            variant: "success",
+        });
+        this.resetFields();
+    };
+
+    private resetFields = () => {
+        this.deps.walletViewState.amount.value = "0";
+        this.deps.walletViewState.address.value = "";
     };
 
     private validateTokenSend = (balance: number, amount: number, address: string): boolean => {

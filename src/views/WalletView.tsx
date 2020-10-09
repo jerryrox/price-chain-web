@@ -8,6 +8,8 @@ import FlexBox from "../components/FlexBox";
 import TitleHeader from "../components/TitleHeader";
 import useBloc from "../libs/useBloc";
 import BalanceState from "../blocs/states/BalanceState";
+import useAuth from "../libs/useAuth";
+import NavigationBloc from "../blocs/NavigationBloc";
 
 export default function WalletView() {
 
@@ -15,6 +17,7 @@ export default function WalletView() {
     const bloc = useBloc(WalletViewBloc);
     const loginState = useBloc(LoginState);
     const balanceState = useBloc(BalanceState);
+    const navigationBloc = useBloc(NavigationBloc);
 
     const amount = useBindable(state.amount);
     const address = useBindable(state.address);
@@ -24,6 +27,12 @@ export default function WalletView() {
     useEffect(() => {
         bloc.initState();
     }, []); // eslint-disable-line
+
+    useAuth({
+        whenUnauth: navigationBloc.toHome
+    });
+
+    const onRefreshButton = () => bloc.loadBalance();
 
     const onTokenAmountChange = (e: any) => bloc.setAmount(e.target.value);
 
@@ -45,6 +54,9 @@ export default function WalletView() {
                 
                 <Typography variant="h5">Balance</Typography>
                 <Typography>{balance}</Typography>
+                <Button variant="contained" color="primary" onClick={onRefreshButton}>
+                    Refresh
+                </Button>
 
                 <Box height={20} />
                 
