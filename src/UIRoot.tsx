@@ -5,6 +5,7 @@ import HomeView from "./views/HomeView";
 import NavBar from "./components/NavBar";
 import AppDrawer from "./components/AppDrawer";
 import NavigationServicer from "./components/NavigationServicer";
+import WalletView from "./views/WalletView";
 
 export default function UIRoot() {
     
@@ -20,7 +21,10 @@ export default function UIRoot() {
                         <HomeView/>
                     </Route>
                     <Route path="/login">
-                    
+
+                    </Route>
+                    <Route path="/wallet">
+                        <WalletView/>
                     </Route>
                 </Switch>
             </BrowserRouter>
