@@ -5,12 +5,14 @@ import NotificationBloc from "./NotificationBloc";
 import AppDrawerState from "./states/AppDrawerState";
 import BalanceState from "./states/BalanceState";
 import BlockchainOverlayState from "./states/BlockchainOverlayState";
+import BlockOverlayState from "./states/BlockOverlayState";
 import HomeViewState from "./states/HomeViewState";
 import LoginState from "./states/LoginState";
 import UserState from "./states/UserState";
 import WalletViewState from "./states/WalletViewState";
 import AppDrawerBloc from "./ui/AppDrawerBloc";
 import BlockchainOverlayBloc from "./ui/BlockchainOverlayBloc";
+import BlockOverlayBloc from "./ui/BlockOverlayBloc";
 import HomeViewBloc from "./ui/HomeViewBloc";
 import NavBarBloc from "./ui/NavBarBloc";
 import WalletViewBloc from "./ui/WalletViewBloc";
@@ -29,10 +31,16 @@ export function initContextValue(): BlocContextValue {
         blockchainOverlayState, notificationBloc,
     });
 
+    const blockOverlayState = new BlockOverlayState();
+    const blockOverlayBloc = new BlockOverlayBloc({
+        blockOverlayState, notificationBloc,
+    });
+
     const appDrawerState = new AppDrawerState();
     const appDrawerBloc = new AppDrawerBloc({
         appDrawerState, loginState, navigationBloc,
-        userState, blockchainOverlayBloc,
+        userState, blockchainOverlayBloc, blockOverlayBloc,
+        
     });
 
     const navBarBloc = new NavBarBloc({
@@ -59,6 +67,12 @@ export function initContextValue(): BlocContextValue {
         navigationBloc,
         notificationBloc,
 
+        blockchainOverlayState,
+        blockchainOverlayBloc,
+
+        blockOverlayState,
+        blockOverlayBloc,
+
         appDrawerState,
         appDrawerBloc,
 
@@ -69,9 +83,6 @@ export function initContextValue(): BlocContextValue {
 
         walletViewState,
         walletViewBloc,
-
-        blockchainOverlayState,
-        blockchainOverlayBloc,
     });
 }
 

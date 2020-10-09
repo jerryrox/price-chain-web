@@ -19,6 +19,8 @@ export default class BlockchainOverlayBloc extends BaseOverlayBloc<BlockchainOve
     }
 
     initState = async () => {
+        this.deps.blockchainOverlayState.chainData.value = {};
+
         try {
             const data = await Api.getChain();
             this.deps.blockchainOverlayState.chainData.value = data;
@@ -26,9 +28,5 @@ export default class BlockchainOverlayBloc extends BaseOverlayBloc<BlockchainOve
         catch (e) {
             this.deps.notificationBloc.addError(e.message);
         }
-    };
-
-    dispose = () => {
-        this.deps.blockchainOverlayState.chainData.value = {};
     };
 }

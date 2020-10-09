@@ -19,13 +19,10 @@ export default function BlockchainOverlay() {
         if (isShowing) {
             bloc.initState();
         }
-        else {
-            bloc.dispose();
-        }
     }, [isShowing]); // eslint-disable-line
     
     return (
-        <BaseOverlay bloc={bloc}>
+        <BaseOverlay bloc={bloc} fullWidth>
             <DialogTitle>Blockchain data</DialogTitle>
             <DialogContent>
                 <DialogContentText>
