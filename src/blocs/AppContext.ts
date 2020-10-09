@@ -10,6 +10,7 @@ import HomeViewState from "./states/HomeViewState";
 import ItemOverlayState from "./states/ItemOverlayState";
 import LoginState from "./states/LoginState";
 import ManageViewState from "./states/ManageViewState";
+import SearchViewState from "./states/SearchViewState";
 import UserState from "./states/UserState";
 import WalletViewState from "./states/WalletViewState";
 import AppDrawerBloc from "./ui/AppDrawerBloc";
@@ -19,6 +20,7 @@ import HomeViewBloc from "./ui/HomeViewBloc";
 import ItemOverlayBloc from "./ui/ItemOverlayBloc";
 import ManageViewBloc from "./ui/ManageViewBloc";
 import NavBarBloc from "./ui/NavBarBloc";
+import SearchViewBloc from "./ui/SearchViewBloc";
 import WalletViewBloc from "./ui/WalletViewBloc";
 
 export function initContextValue(): BlocContextValue {
@@ -75,6 +77,11 @@ export function initContextValue(): BlocContextValue {
         itemOverlayBloc,
     });
 
+    const searchViewState = new SearchViewState();
+    const searchViewBloc = new SearchViewBloc({
+        searchViewState, notificationBloc,
+    });
+
     return new BlocContextValue({
         userState,
         loginState,
@@ -105,6 +112,9 @@ export function initContextValue(): BlocContextValue {
 
         manageViewState,
         manageViewBloc,
+
+        searchViewState,
+        searchViewBloc,
     });
 }
 

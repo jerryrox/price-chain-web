@@ -11,6 +11,7 @@ import BlockchainOverlay from "./overlays/BlockchainOverlay";
 import BlockOverlay from "./overlays/BlockOverlay";
 import ManageView from "./views/ManageView";
 import ItemOverlay from "./overlays/ItemOverlay";
+import SearchView from "./views/SearchView";
 
 export default function UIRoot() {
     
@@ -25,6 +26,9 @@ export default function UIRoot() {
                 <Switch>
                     <Route exact path="/">
                         <HomeView/>
+                    </Route>
+                    <Route path="/search">
+                        <SearchView/>
                     </Route>
                     <Route path="/wallet">
                         <WalletView/>
