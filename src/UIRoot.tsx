@@ -4,15 +4,17 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomeView from "./views/HomeView";
 import NavBar from "./components/NavBar";
 import AppDrawer from "./components/AppDrawer";
-import NavigationServicer from "./components/NavigationServicer";
+import NavigationServicer from "./servicers/NavigationServicer";
 import WalletView from "./views/WalletView";
+import NotificationServicer from "./servicers/NotificationServicer";
 
 export default function UIRoot() {
     
     return (
         <Box>
             <BrowserRouter>
-                <NavigationServicer />
+                <NavigationServicer/>
+                <NotificationServicer/>
 
                 <NavBar />
 

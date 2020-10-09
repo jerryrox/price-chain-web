@@ -1,6 +1,7 @@
 import { BaseBloc } from "bindable-bloc";
 import { UserType } from "../../libs/types";
 import NavigationBloc from "../NavigationBloc";
+import NotificationBloc from "../NotificationBloc";
 import HomeViewState from "../states/HomeViewState";
 import LoginState from "../states/LoginState";
 import UserState from "../states/UserState";
@@ -12,6 +13,7 @@ interface IHomeViewDependency {
     userState: UserState;
 
     navigationBloc: NavigationBloc;
+    notificationBloc: NotificationBloc;
 }
 
 export default class HomeViewBloc extends BaseBloc {
@@ -67,11 +69,11 @@ export default class HomeViewBloc extends BaseBloc {
 
     private validateLoginValues = (publicAddress: string, privateAddress: string): boolean => {
         if (publicAddress.length <= 0) {
-            // TODO: Error
+            this.deps.notificationBloc.addError("Please enter a public address.");
             return false;
         }
         if (privateAddress.length <= 0) {
-            // TODO: Error
+            this.deps.notificationBloc.addError("Please enter a private address.");
             return false;
         }
         return true;
