@@ -1,4 +1,4 @@
-import { Box, Button, DialogContent, DialogContentText, DialogTitle, Divider, TextField } from "@material-ui/core";
+import { Box, Button, DialogContent, DialogContentText, DialogTitle, TextField } from "@material-ui/core";
 import { useBindable } from "bindable-bloc";
 import React, { useEffect } from "react";
 import BlockOverlayState from "../blocs/states/BlockOverlayState";
