@@ -50,17 +50,35 @@ export default function SearchView() {
                             const onHistoryButton = () => bloc.showHistory(r);
 
                             return (
-                                <ListItem>
+                                <ListItem key={`${r.sku}${r.timestamp}`} divider>
                                     <FlexBox flexDirection="column" alignItems="flex-start">
                                         <Typography variant="h6">{r.sku}</Typography>
-                                        <Typography>By {r.userAddress} on {new Date(r.timestamp).toISOString()}</Typography>
+                                        <Typography style={{
+                                            fontSize: 12
+                                        }}>
+                                            By {r.userAddress}
+                                        </Typography>
+                                        <Typography style={{
+                                            fontSize: 12
+                                        }}>
+                                            {new Date(r.timestamp).toISOString()}
+                                        </Typography>
                                     </FlexBox>
                                     <Box flex={1} />
-                                    <FlexBox flexDirection="column" alignItems="flex-start">
+                                    <FlexBox flexDirection="column" alignItems="flex-end">
                                         <Typography variant="h6">${finalPrice}</Typography>
-                                        <Typography>({Utils.getPercent(r.discountRate)} discount from ${r.basePrice})</Typography>
+                                        <Typography style={{
+                                            fontSize: 12
+                                        }}>
+                                            Original price: ${r.basePrice}
+                                        </Typography>
+                                        <Typography style={{
+                                            fontSize: 12
+                                        }}>
+                                            Discount: {Utils.getPercent(r.discountRate)}
+                                        </Typography>
                                     </FlexBox>
-                                    <Divider orientation="vertical"/>
+                                    <Box width={20}/>
                                     <Button onClick={onHistoryButton}>
                                         History
                                     </Button>

@@ -1,4 +1,5 @@
 import { BaseBloc } from "bindable-bloc";
+import Api from "../../api/Api";
 import IItemPriceModel from "../../models/IItemPriceModel";
 import NotificationBloc from "../NotificationBloc";
 import SearchViewState from "../states/SearchViewState";
@@ -36,9 +37,16 @@ export default class SearchViewBloc extends BaseBloc {
 
     setSearchValue = (value: string) => this.searchValue = value;
 
-    search = () => {
-        const value = this.searchValue;
-        // TODO:
+    search = async () => {
+        try {
+            const searchValue = this.searchValue;
+            const results = await Api.getItemPrices(searchValue);
+
+            this.state.results.value = results;
+        }
+        catch (e) {
+            this.deps.notificationBloc.addError(e.message);
+        }
     };
 
     showHistory = (item: IItemPriceModel) => {
