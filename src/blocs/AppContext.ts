@@ -24,7 +24,8 @@ export function initContextValue(): BlocContextValue {
 
     const appDrawerState = new AppDrawerState();
     const appDrawerBloc = new AppDrawerBloc({
-        appDrawerState
+        appDrawerState, loginState, navigationBloc,
+        userState,
     });
 
     const navBarBloc = new NavBarBloc({

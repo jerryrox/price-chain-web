@@ -5,6 +5,7 @@ import AppDrawerBloc from "../blocs/ui/AppDrawerBloc";
 import AppDrawerState from "../blocs/states/AppDrawerState";
 import useBloc from "../libs/useBloc";
 import Icons from "../libs/Icons";
+import useAuth from "../libs/useAuth";
 
 export default function AppDrawer() {
 
@@ -12,6 +13,8 @@ export default function AppDrawer() {
     const state = useBloc(AppDrawerState);
 
     const isOpen = useBindable(state.isOpen);
+
+    const isLoggedIn = useAuth();
 
     useEffect(() => {
         bloc.initState();
@@ -21,7 +24,24 @@ export default function AppDrawer() {
 
     const onHomeButton = () => bloc.toHome();
 
+    const onSearchButton = () => bloc.toSearch();
+
+    const onWalletButton = () => bloc.toWallet();
+
+    const onDebugChainButton = () => bloc.debugChain();
+
+    const onDebugBlockButton = () => bloc.debugBlock();
+
     const onLogoutButton = () => bloc.logout();
+
+    const drawListItem = (Icon: any, label: string, onClick: () => void) => {
+        return (
+            <ListItem button onClick={onClick}>
+                <ListItemIcon><Icon /></ListItemIcon>
+                <ListItemText primary={label}/>
+            </ListItem>
+        );
+    };
     
     return (
         <Drawer open={isOpen} anchor="left" onClose={onDrawerClose}>
@@ -29,18 +49,22 @@ export default function AppDrawer() {
                 width: 320,
                 height: "100vh",
             }}>
-                <ListItem button onClick={onHomeButton}>
-                    <ListItemIcon><Icons.home /></ListItemIcon>
-                    <ListItemText primary="Home"/>
-                </ListItem>
+                {drawListItem(Icons.home, "Home", onHomeButton)}
+                {
+                    isLoggedIn &&
+                    drawListItem(Icons.search, "Search", onSearchButton)
+                }
+                {
+                    isLoggedIn &&
+                    drawListItem(Icons.wallet, "Wallet", onWalletButton)
+                }
+                {drawListItem(Icons.blockChain, "Log Blockchain Data", onDebugChainButton)}
+                {drawListItem(Icons.block, "Log Block Data", onDebugBlockButton)}
             </List>
             
             <Box flex={1} />
             <Divider/>
-            <ListItem button onClick={onLogoutButton}>
-                <ListItemIcon><Icons.logout /></ListItemIcon>
-                <ListItemText primary="Log out"/>
-            </ListItem>
+            {drawListItem(Icons.logout, "Log out", onLogoutButton)}
         </Drawer>
     );
 }
