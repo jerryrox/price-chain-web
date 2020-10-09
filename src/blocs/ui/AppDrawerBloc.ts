@@ -1,5 +1,5 @@
 import { BaseBloc } from "bindable-bloc";
-import { UserType } from "../../libs/types";
+import UserType from "../../models/UserType";
 import NavigationBloc from "../NavigationBloc";
 import AppDrawerState from "../states/AppDrawerState";
 import LoginState from "../states/LoginState";

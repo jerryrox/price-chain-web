@@ -1,5 +1,5 @@
 import { BaseBloc } from "bindable-bloc";
-import { UserType } from "../../libs/types";
+import UserType from "../../models/UserType";
 import NavigationBloc from "../NavigationBloc";
 import NotificationBloc from "../NotificationBloc";
 import HomeViewState from "../states/HomeViewState";
@@ -39,8 +39,6 @@ export default class HomeViewBloc extends BaseBloc {
             return;
         }
         this.deps.userState.userType.value = UserType.customer;
-
-        this.deps.navigationBloc.toSearch();
     };
 
     continueAsShopOwner = () => {
@@ -48,8 +46,15 @@ export default class HomeViewBloc extends BaseBloc {
             return;
         }
         this.deps.userState.userType.value = UserType.shopOwner;
+    };
 
-        this.deps.navigationBloc.toDashboard();
+    toWallet = () => {
+        this.deps.navigationBloc.toWallet();
+    };
+
+    logout = () => {
+        this.deps.loginState.credential.value = null;
+        this.deps.userState.userType.value = UserType.anonymous;
     };
 
     private logIn = (): boolean => {

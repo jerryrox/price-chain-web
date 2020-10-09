@@ -50,10 +50,7 @@ export default function AppDrawer() {
                 height: "100%",
             }}>
                 {drawListItem(Icons.home, "Home", onHomeButton)}
-                {
-                    isLoggedIn &&
-                    drawListItem(Icons.search, "Search", onSearchButton)
-                }
+                {drawListItem(Icons.search, "Search", onSearchButton)}
                 {
                     isLoggedIn &&
                     drawListItem(Icons.wallet, "Wallet", onWalletButton)

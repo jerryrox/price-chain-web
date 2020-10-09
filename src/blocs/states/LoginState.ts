@@ -1,5 +1,5 @@
 import { BaseBloc, Bindable } from "bindable-bloc";
-import { ICredential } from "../../libs/types";
+import ICredential from "../../models/ICredential";
 
 export default class LoginState extends BaseBloc {
     

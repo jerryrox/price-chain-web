@@ -1,5 +1,5 @@
 import { BaseBloc, Bindable } from "bindable-bloc";
-import { UserType } from "../../libs/types";
+import UserType from "../../models/UserType";
 
 export default class UserState extends BaseBloc {
     
