@@ -72,7 +72,7 @@ export default function HomeView() {
                     maxWidth: "90%",
                     width: 400,
                 }}>
-                    Continue as business owner
+                    Continue as shop owner
                 </Button>
             </Fragment>
         );

@@ -1,4 +1,4 @@
-import { BaseBloc, Bindable } from "bindable-bloc";
+import { Bindable } from "bindable-bloc";
 import BaseOverlayState from "./BaseOverlayState";
 
 export default class BlockchainOverlayState extends BaseOverlayState {

@@ -1,4 +1,3 @@
-import { BaseBloc } from "bindable-bloc";
 import Api from "../../api/Api";
 import NotificationBloc from "../NotificationBloc";
 import BlockchainOverlayState from "../states/BlockchainOverlayState";

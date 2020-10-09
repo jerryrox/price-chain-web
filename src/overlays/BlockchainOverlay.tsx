@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogContentText, DialogTitle } from "@material-ui/core";
+import { DialogContent, DialogContentText, DialogTitle } from "@material-ui/core";
 import { useBindable } from "bindable-bloc";
 import React, { useEffect } from "react";
 import BlockchainOverlayState from "../blocs/states/BlockchainOverlayState";
