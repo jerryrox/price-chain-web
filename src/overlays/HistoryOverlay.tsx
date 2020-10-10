@@ -1,7 +1,6 @@
 import { DialogContent, DialogContentText, DialogTitle, MenuItem, Select } from "@material-ui/core";
 import { useBindable } from "bindable-bloc";
 import ReactEcharts from "echarts-for-react";
-import moment from "moment";
 import React, { useEffect, useMemo } from "react";
 import HistoryOverlayState from "../blocs/states/HistoryOverlayState";
 import HistoryOverlayBloc from "../blocs/ui/HistoryOverlayBloc";
