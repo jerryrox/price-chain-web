@@ -12,6 +12,7 @@ import BlockOverlay from "./overlays/BlockOverlay";
 import ManageView from "./views/ManageView";
 import ItemOverlay from "./overlays/ItemOverlay";
 import SearchView from "./views/SearchView";
+import HistoryOverlay from "./overlays/HistoryOverlay";
 
 export default function UIRoot() {
     
@@ -40,7 +41,8 @@ export default function UIRoot() {
 
                 <BlockchainOverlay />
                 <BlockOverlay />
-                <ItemOverlay/>
+                <ItemOverlay />
+                <HistoryOverlay/>
 
                 <AppDrawer/>
             </BrowserRouter>

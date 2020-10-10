@@ -5,11 +5,13 @@ import ItemSortType from "../../models/ItemSortType";
 import SortDirection from "../../models/SortDirection";
 import NotificationBloc from "../NotificationBloc";
 import SearchViewState from "../states/SearchViewState";
+import HistoryOverlayBloc from "./HistoryOverlayBloc";
 
 interface ISearchViewDependency {
     searchViewState: SearchViewState;
 
     notificationBloc: NotificationBloc;
+    historyOverlayBloc: HistoryOverlayBloc;
 }
 
 export default class SearchViewBloc extends BaseBloc {
@@ -62,7 +64,7 @@ export default class SearchViewBloc extends BaseBloc {
     };
 
     showHistory = (item: IItemPriceModel) => {
-        // TODO:
+        this.deps.historyOverlayBloc.showForItem(item);
     };
 
     private refreshResults = () => this.setResultBySorting(this.state.results.value);
