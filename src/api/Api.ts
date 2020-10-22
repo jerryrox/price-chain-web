@@ -1,3 +1,4 @@
+import ICredential from "../models/ICredential";
 import IItemPriceModel from "../models/IItemPriceModel";
 import INewPriceModel from "../models/INewPriceModel";
 import ApiRequest from "./ApiRequest";
@@ -64,6 +65,14 @@ class Api {
             this.getFullUrl("/get-block"),
             { index }
         )).data;
+    };
+
+    getNewAddress = async (): Promise<ICredential> => {
+        const data = await (await ApiRequest.get(this.getFullUrl("/get-new-address"))).data;
+        return {
+            privateAddress: data.privateKey,
+            publicAddress: data.publicKey,
+        };
     };
 
     addPrices = async (userAddress: string, prices: INewPriceModel[]): Promise<void> => {

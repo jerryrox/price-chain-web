@@ -36,6 +36,8 @@ export default function HomeView() {
 
     const onShopOwnerButton = () => bloc.continueAsShopOwner();
 
+    const onCreateAddressButton = () => bloc.createNewAddress();
+
     const onWalletButton = () => bloc.toWallet();
 
     const onManageButton = () => bloc.toManage();
@@ -55,9 +57,8 @@ export default function HomeView() {
                     <Box width={20}/>
                     <TextField value={privateAddress} onChange={onPrivateAddressChange}/>
                 </FlexBox>
+
                 <Box height={20}/>
-                
-                <Box height={40}/>
 
                 <Button variant="contained" color="primary" onClick={onCustomerButton} style={{
                     maxWidth: "90%",
@@ -65,16 +66,25 @@ export default function HomeView() {
                 }}>
                     Continue as customer
                 </Button>
-                <Box height={10} />
+                <Box height={5} />
                 <Typography variant="h6">
                     - OR -
                 </Typography>
-                <Box height={10}/>
+                <Box height={5}/>
                 <Button variant="contained" color="primary" onClick={onShopOwnerButton} style={{
                     maxWidth: "90%",
                     width: 400,
                 }}>
                     Continue as shop owner
+                </Button>
+
+                <Box height={40} />
+                
+                <Button variant="outlined" color="secondary" onClick={onCreateAddressButton} style={{
+                    maxWidth: "90%",
+                    width: 400,
+                }}>
+                    Create new addres
                 </Button>
             </Fragment>
         );

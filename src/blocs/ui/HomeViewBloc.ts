@@ -1,5 +1,6 @@
 import { BaseBloc } from "bindable-bloc";
 import elliptic from "elliptic";
+import Api from "../../api/Api";
 import AddressVerifier from "../../libs/AddressVerifier";
 import UserType from "../../models/UserType";
 import NavigationBloc from "../NavigationBloc";
@@ -7,6 +8,7 @@ import NotificationBloc from "../NotificationBloc";
 import HomeViewState from "../states/HomeViewState";
 import LoginState from "../states/LoginState";
 import UserState from "../states/UserState";
+import NewAddressOverlayBloc from "./NewAddressOverlayBloc";
 
 interface IHomeViewDependency {
     homeViewState: HomeViewState;
@@ -16,6 +18,7 @@ interface IHomeViewDependency {
 
     navigationBloc: NavigationBloc;
     notificationBloc: NotificationBloc;
+    newAddressOverlayBloc: NewAddressOverlayBloc;
 }
 
 export default class HomeViewBloc extends BaseBloc {
@@ -48,6 +51,10 @@ export default class HomeViewBloc extends BaseBloc {
             return;
         }
         this.deps.userState.userType.value = UserType.shopOwner;
+    };
+
+    createNewAddress = () => {
+        this.deps.newAddressOverlayBloc.show();
     };
 
     toWallet = () => {

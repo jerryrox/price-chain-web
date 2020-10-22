@@ -11,6 +11,7 @@ import HomeViewState from "./states/HomeViewState";
 import ItemOverlayState from "./states/ItemOverlayState";
 import LoginState from "./states/LoginState";
 import ManageViewState from "./states/ManageViewState";
+import NewAddressOverlayState from "./states/NewAddressOverlayState";
 import SearchViewState from "./states/SearchViewState";
 import UserState from "./states/UserState";
 import WalletViewState from "./states/WalletViewState";
@@ -22,6 +23,7 @@ import HomeViewBloc from "./ui/HomeViewBloc";
 import ItemOverlayBloc from "./ui/ItemOverlayBloc";
 import ManageViewBloc from "./ui/ManageViewBloc";
 import NavBarBloc from "./ui/NavBarBloc";
+import NewAddressOverlayBloc from "./ui/NewAddressOverlayBloc";
 import SearchViewBloc from "./ui/SearchViewBloc";
 import WalletViewBloc from "./ui/WalletViewBloc";
 
@@ -33,6 +35,11 @@ export function initContextValue(): BlocContextValue {
 
     const navigationBloc = new NavigationBloc();
     const notificationBloc = new NotificationBloc();
+
+    const newAddressOverlayState = new NewAddressOverlayState();
+    const newAddressOverlayBloc = new NewAddressOverlayBloc({
+        newAddressOverlayState, notificationBloc,
+    });
 
     const blockchainOverlayState = new BlockchainOverlayState();
     const blockchainOverlayBloc = new BlockchainOverlayBloc({
@@ -69,7 +76,7 @@ export function initContextValue(): BlocContextValue {
     const homeViewState = new HomeViewState();
     const homeViewBloc = new HomeViewBloc({
         homeViewState, loginState, userState,
-        navigationBloc, notificationBloc,
+        navigationBloc, notificationBloc, newAddressOverlayBloc,
     });
 
     const walletViewState = new WalletViewState();
@@ -97,6 +104,9 @@ export function initContextValue(): BlocContextValue {
 
         navigationBloc,
         notificationBloc,
+
+        newAddressOverlayState,
+        newAddressOverlayBloc,
 
         blockchainOverlayState,
         blockchainOverlayBloc,

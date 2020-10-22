@@ -13,6 +13,7 @@ import ManageView from "./views/ManageView";
 import ItemOverlay from "./overlays/ItemOverlay";
 import SearchView from "./views/SearchView";
 import HistoryOverlay from "./overlays/HistoryOverlay";
+import NewAddressOverlay from "./overlays/NewAddressOverlay";
 
 export default function UIRoot() {
     
@@ -39,6 +40,7 @@ export default function UIRoot() {
                     </Route>
                 </Switch>
 
+                <NewAddressOverlay/>
                 <BlockchainOverlay />
                 <BlockOverlay />
                 <ItemOverlay />
