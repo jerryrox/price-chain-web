@@ -11,5 +11,11 @@ class Utils {
     getPercent = (value: number) => {
         return `${Math.floor(value * 100)}%`;
     };
+
+    toHexString = (bytes: any[]) => {
+        return bytes.map((b) => {
+            return `0${(b & 0xff).toString(16)}`.slice(-2);
+        }).join("");
+    };
 }
 export default new Utils();

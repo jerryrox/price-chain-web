@@ -1,4 +1,6 @@
 import { BaseBloc } from "bindable-bloc";
+import elliptic from "elliptic";
+import AddressVerifier from "../../libs/AddressVerifier";
 import UserType from "../../models/UserType";
 import NavigationBloc from "../NavigationBloc";
 import NotificationBloc from "../NotificationBloc";
@@ -85,6 +87,11 @@ export default class HomeViewBloc extends BaseBloc {
             this.deps.notificationBloc.addError("Please enter a private address.");
             return false;
         }
+        if (!AddressVerifier.verify(publicAddress, privateAddress)) {
+            this.deps.notificationBloc.addError("Failed to verify addresses.");
+            return false;
+        }
+
         return true;
     };
 }
