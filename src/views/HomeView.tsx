@@ -84,7 +84,7 @@ export default function HomeView() {
                     maxWidth: "90%",
                     width: 400,
                 }}>
-                    Create new addres
+                    Create new address
                 </Button>
             </Fragment>
         );
